@@ -166,54 +166,93 @@
             transform: scale(0.95);
         }
         
-        /* Category Cards */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-            margin-top: 12px;
+        /* Page Title */
+        .page-title {
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
         
-        .category-card {
+        /* Category Section */
+        .category-section {
+            margin-bottom: 16px;
+        }
+        
+        .category-header {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.35), rgba(118, 75, 162, 0.35));
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            padding: 24px 16px;
-            text-align: center;
+            padding: 20px 20px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
             color: white;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 130px;
+            gap: 16px;
         }
         
-        .category-card:active {
-            transform: scale(0.95);
+        .category-header:active {
+            transform: scale(0.98);
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.45), rgba(118, 75, 162, 0.45));
         }
         
+        .category-header.active {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5));
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.5);
+        }
+        
         .category-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
+            font-size: 42px;
+            min-width: 42px;
+        }
+        
+        .category-info {
+            flex: 1;
         }
         
         .category-name {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 800;
-            line-height: 1.3;
+            margin-bottom: 4px;
         }
         
-        /* Subject Grid */
+        .category-count {
+            font-size: 13px;
+            opacity: 0.85;
+            font-weight: 600;
+        }
+        
+        .category-arrow {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-header.active .category-arrow {
+            transform: rotate(90deg);
+        }
+        
+        /* Subjects Container */
+        .subjects-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.4s ease;
+            margin-top: 0;
+        }
+        
+        .subjects-container.expanded {
+            max-height: 2000px;
+            margin-top: 12px;
+        }
+        
         .subjects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            margin-top: 12px;
         }
         
         .subject-card {
@@ -251,50 +290,25 @@
             line-height: 1.3;
         }
         
-        /* Page Title */
-        .page-title {
-            color: white;
-            font-size: 22px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Scrollable container for subjects */
-        .subjects-container {
-            max-height: calc(100vh - 280px);
+        /* Content wrapper */
+        .content-wrapper {
+            max-height: calc(100vh - 200px);
             overflow-y: auto;
             padding-right: 4px;
         }
         
-        .subjects-container::-webkit-scrollbar {
+        .content-wrapper::-webkit-scrollbar {
             width: 4px;
         }
         
-        .subjects-container::-webkit-scrollbar-track {
+        .content-wrapper::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 2px;
         }
         
-        .subjects-container::-webkit-scrollbar-thumb {
+        .content-wrapper::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.3);
             border-radius: 2px;
-        }
-        
-        /* View switching */
-        .view {
-            display: none;
-        }
-        
-        .view.active {
-            display: block;
-            animation: viewSlideIn 0.4s ease-out;
-        }
-        
-        @keyframes viewSlideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
         }
     </style>
 </head>
@@ -310,9 +324,9 @@
     </script>
     
     <div class="container">
-        <button class="back-btn" onclick="handleBack()">
+        <button class="back-btn" onclick="window.close()">
             <span>←</span>
-            <span id="backText">Back to Categories</span>
+            <span>Close Window</span>
         </button>
         
         <div class="audio-card" id="eduAudioCard">
@@ -328,169 +342,178 @@
             </div>
         </div>
         
-        <!-- CATEGORIES VIEW -->
-        <div class="view active" id="categoriesView">
-            <div class="page-title">📚 Select Category</div>
-            <div class="categories-grid">
-                <div class="category-card" onclick="showCategorySubjects('law')">
+        <div class="page-title">📚 Educational Help</div>
+        
+        <div class="content-wrapper">
+            <!-- LAW CATEGORY -->
+            <div class="category-section">
+                <div class="category-header" onclick="toggleCategory('law')">
                     <div class="category-icon">⚖️</div>
-                    <div class="category-name">Law Subjects</div>
+                    <div class="category-info">
+                        <div class="category-name">Law Subjects</div>
+                        <div class="category-count">5 subjects available</div>
+                    </div>
+                    <div class="category-arrow">›</div>
                 </div>
-                <div class="category-card" onclick="showCategorySubjects('commerce')">
+                <div class="subjects-container" id="law-subjects">
+                    <div class="subjects-grid">
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'BNSS')">
+                            <div class="subject-icon">📖</div>
+                            <div class="subject-name">BNSS</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'BNS')">
+                            <div class="subject-icon">⚖️</div>
+                            <div class="subject-name">BNS</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'BSA')">
+                            <div class="subject-icon">📜</div>
+                            <div class="subject-name">BSA</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Constitutional Law')">
+                            <div class="subject-icon">🏛️</div>
+                            <div class="subject-name">Constitutional Law</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'CPC')">
+                            <div class="subject-icon">⚖️</div>
+                            <div class="subject-name">CPC</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COMMERCE CATEGORY -->
+            <div class="category-section">
+                <div class="category-header" onclick="toggleCategory('commerce')">
                     <div class="category-icon">💼</div>
-                    <div class="category-name">Commerce Subjects</div>
+                    <div class="category-info">
+                        <div class="category-name">Commerce Subjects</div>
+                        <div class="category-count">14 subjects available</div>
+                    </div>
+                    <div class="category-arrow">›</div>
                 </div>
-                <div class="category-card" onclick="showCategorySubjects('arts')">
+                <div class="subjects-container" id="commerce-subjects">
+                    <div class="subjects-grid">
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Accounting-I')">
+                            <div class="subject-icon">📊</div>
+                            <div class="subject-name">Accounting-I</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Accounting-II')">
+                            <div class="subject-icon">📊</div>
+                            <div class="subject-name">Accounting-II</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'BSM')">
+                            <div class="subject-icon">📈</div>
+                            <div class="subject-name">BSM</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'BMS')">
+                            <div class="subject-icon">💼</div>
+                            <div class="subject-name">BMS</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'FMA')">
+                            <div class="subject-icon">💰</div>
+                            <div class="subject-name">FMA</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'FCA')">
+                            <div class="subject-icon">💵</div>
+                            <div class="subject-name">FCA</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'IT')">
+                            <div class="subject-icon">💻</div>
+                            <div class="subject-name">IT</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Financial Accounting')">
+                            <div class="subject-icon">💳</div>
+                            <div class="subject-name">Financial Accounting</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Cost Accounting')">
+                            <div class="subject-icon">📉</div>
+                            <div class="subject-name">Cost Accounting</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Management Accounting')">
+                            <div class="subject-icon">📋</div>
+                            <div class="subject-name">Management Accounting</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Business Law')">
+                            <div class="subject-icon">⚖️</div>
+                            <div class="subject-name">Business Law</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Company Law')">
+                            <div class="subject-icon">🏢</div>
+                            <div class="subject-name">Company Law</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Income Tax')">
+                            <div class="subject-icon">💰</div>
+                            <div class="subject-name">Income Tax</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'GST')">
+                            <div class="subject-icon">🧾</div>
+                            <div class="subject-name">Goods & Service Tax</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ARTS CATEGORY -->
+            <div class="category-section">
+                <div class="category-header" onclick="toggleCategory('arts')">
                     <div class="category-icon">🎨</div>
-                    <div class="category-name">Arts Subjects</div>
+                    <div class="category-info">
+                        <div class="category-name">Arts Subjects</div>
+                        <div class="category-count">6 subjects available</div>
+                    </div>
+                    <div class="category-arrow">›</div>
                 </div>
-                <div class="category-card" onclick="showCategorySubjects('others')">
+                <div class="subjects-container" id="arts-subjects">
+                    <div class="subjects-grid">
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Political Science-I')">
+                            <div class="subject-icon">🗳️</div>
+                            <div class="subject-name">Political Science-I</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Political Science-II')">
+                            <div class="subject-icon">🗳️</div>
+                            <div class="subject-name">Political Science-II</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Economics-I')">
+                            <div class="subject-icon">📈</div>
+                            <div class="subject-name">Economics-I</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'Economics-II')">
+                            <div class="subject-icon">📊</div>
+                            <div class="subject-name">Economics-II</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'History-I')">
+                            <div class="subject-icon">🏛️</div>
+                            <div class="subject-name">History-I</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'History-II')">
+                            <div class="subject-icon">📜</div>
+                            <div class="subject-name">History-II</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- OTHER SUBJECTS CATEGORY -->
+            <div class="category-section">
+                <div class="category-header" onclick="toggleCategory('others')">
                     <div class="category-icon">📝</div>
-                    <div class="category-name">Other Subjects</div>
+                    <div class="category-info">
+                        <div class="category-name">Other Subjects</div>
+                        <div class="category-count">2 subjects available</div>
+                    </div>
+                    <div class="category-arrow">›</div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- LAW SUBJECTS VIEW -->
-        <div class="view" id="lawView">
-            <div class="page-title">⚖️ Law Subjects</div>
-            <div class="subjects-container">
-                <div class="subjects-grid">
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'BNSS')">
-                        <div class="subject-icon">📖</div>
-                        <div class="subject-name">BNSS</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'BNS')">
-                        <div class="subject-icon">⚖️</div>
-                        <div class="subject-name">BNS</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'BSA')">
-                        <div class="subject-icon">📜</div>
-                        <div class="subject-name">BSA</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Constitutional Law')">
-                        <div class="subject-icon">🏛️</div>
-                        <div class="subject-name">Constitutional Law</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'CPC')">
-                        <div class="subject-icon">⚖️</div>
-                        <div class="subject-name">CPC</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- COMMERCE SUBJECTS VIEW -->
-        <div class="view" id="commerceView">
-            <div class="page-title">💼 Commerce Subjects</div>
-            <div class="subjects-container">
-                <div class="subjects-grid">
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Accounting-I')">
-                        <div class="subject-icon">📊</div>
-                        <div class="subject-name">Accounting-I</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Accounting-II')">
-                        <div class="subject-icon">📊</div>
-                        <div class="subject-name">Accounting-II</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'BSM')">
-                        <div class="subject-icon">📈</div>
-                        <div class="subject-name">BSM</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'BMS')">
-                        <div class="subject-icon">💼</div>
-                        <div class="subject-name">BMS</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'FMA')">
-                        <div class="subject-icon">💰</div>
-                        <div class="subject-name">FMA</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'FCA')">
-                        <div class="subject-icon">💵</div>
-                        <div class="subject-name">FCA</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'IT')">
-                        <div class="subject-icon">💻</div>
-                        <div class="subject-name">IT</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Financial Accounting')">
-                        <div class="subject-icon">💳</div>
-                        <div class="subject-name">Financial Accounting</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Cost Accounting')">
-                        <div class="subject-icon">📉</div>
-                        <div class="subject-name">Cost Accounting</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Management Accounting')">
-                        <div class="subject-icon">📋</div>
-                        <div class="subject-name">Management Accounting</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Business Law')">
-                        <div class="subject-icon">⚖️</div>
-                        <div class="subject-name">Business Law</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Company Law')">
-                        <div class="subject-icon">🏢</div>
-                        <div class="subject-name">Company Law</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Income Tax')">
-                        <div class="subject-icon">💰</div>
-                        <div class="subject-name">Income Tax</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'GST')">
-                        <div class="subject-icon">🧾</div>
-                        <div class="subject-name">Goods & Service Tax</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- ARTS SUBJECTS VIEW -->
-        <div class="view" id="artsView">
-            <div class="page-title">🎨 Arts Subjects</div>
-            <div class="subjects-container">
-                <div class="subjects-grid">
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Political Science-I')">
-                        <div class="subject-icon">🗳️</div>
-                        <div class="subject-name">Political Science-I</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Political Science-II')">
-                        <div class="subject-icon">🗳️</div>
-                        <div class="subject-name">Political Science-II</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Economics-I')">
-                        <div class="subject-icon">📈</div>
-                        <div class="subject-name">Economics-I</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'Economics-II')">
-                        <div class="subject-icon">📊</div>
-                        <div class="subject-name">Economics-II</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'History-I')">
-                        <div class="subject-icon">🏛️</div>
-                        <div class="subject-name">History-I</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'History-II')">
-                        <div class="subject-icon">📜</div>
-                        <div class="subject-name">History-II</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- OTHER SUBJECTS VIEW -->
-        <div class="view" id="othersView">
-            <div class="page-title">📝 Other Subjects</div>
-            <div class="subjects-container">
-                <div class="subjects-grid">
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'English-I')">
-                        <div class="subject-icon">📖</div>
-                        <div class="subject-name">English-I</div>
-                    </a>
-                    <a href="#" class="subject-card" onclick="openSubject(event, 'English-II')">
-                        <div class="subject-icon">📚</div>
-                        <div class="subject-name">English-II</div>
-                    </a>
+                <div class="subjects-container" id="others-subjects">
+                    <div class="subjects-grid">
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'English-I')">
+                            <div class="subject-icon">📖</div>
+                            <div class="subject-name">English-I</div>
+                        </a>
+                        <a href="#" class="subject-card" onclick="openSubject(event, 'English-II')">
+                            <div class="subject-icon">📚</div>
+                            <div class="subject-name">English-II</div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -582,43 +605,23 @@
         
         initAudioManager();
         
-        // View navigation
-        let currentView = 'categoriesView';
-        
-        function showView(viewId) {
-            const currentViewElement = document.querySelector('.view.active');
-            if (currentViewElement) {
-                currentViewElement.classList.remove('active');
-            }
+        // Toggle category expansion
+        function toggleCategory(category) {
+            const container = document.getElementById(`${category}-subjects`);
+            const header = container.previousElementSibling;
             
-            document.getElementById(viewId).classList.add('active');
-            currentView = viewId;
-            window.scrollTo(0, 0);
-        }
-        
-        function showCategorySubjects(category) {
-            const viewMap = {
-                'law': 'lawView',
-                'commerce': 'commerceView',
-                'arts': 'artsView',
-                'others': 'othersView'
-            };
+            // Close all other categories
+            document.querySelectorAll('.subjects-container').forEach(c => {
+                if (c !== container && c.classList.contains('expanded')) {
+                    c.classList.remove('expanded');
+                    c.previousElementSibling.classList.remove('active');
+                }
+            });
             
-            showView(viewMap[category]);
-            document.getElementById('backText').textContent = 'Back to Categories';
+            // Toggle current category
+            container.classList.toggle('expanded');
+            header.classList.toggle('active');
         }
-        
-        function handleBack() {
-            if (currentView === 'categoriesView') {
-                window.close();
-            } else {
-                showView('categoriesView');
-                document.getElementById('backText').textContent = 'Close Window';
-            }
-        }
-        
-        // Update back button text on load
-        document.getElementById('backText').textContent = 'Close Window';
         
         // Subject links mapping
         const subjectLinks = {
@@ -663,7 +666,7 @@
             }
         });
         
-        document.querySelectorAll('.subject-card, .category-card, .back-btn, .audio-card').forEach(el => {
+        document.querySelectorAll('.subject-card, .audio-card').forEach(el => {
             el.addEventListener('touchstart', () => {
                 el.style.transform = 'scale(0.95)';
             });
