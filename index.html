@@ -732,11 +732,24 @@
             'English-II': 'https://sites.google.com/view/bnss-chapter-i/home'
         };
         
-        function openSubject(event, subjectName) {
-            event.preventDefault();
-            const url = subjectLinks[subjectName] || 'https://example.com/subject-not-found';
-            window.open(url, '_blank', 'noopener,noreferrer');
-        }
+function openSubject(event, subjectName) {
+    event.preventDefault();
+    
+    // Add clicked class for animation
+    const card = event.currentTarget;
+    card.classList.add('clicked');
+    
+    // Wait for animation to complete before opening link
+    setTimeout(() => {
+        const url = subjectLinks[subjectName] || 'https://example.com/subject-not-found';
+        window.open(url, '_blank', 'noopener,noreferrer');
+        
+        // Remove clicked class after opening
+        setTimeout(() => {
+            card.classList.remove('clicked');
+        }, 100);
+    }, 400); // 400ms delay to show the checkmark
+}
         
         document.addEventListener('visibilitychange', () => {
             if (document.hidden && audioManager.isPlaying) {
@@ -752,12 +765,18 @@
                 el.style.transform = 'scale(1)';
             });
         });
-        // ✅ Add click feedback effect
-document.querySelectorAll('.subject-card').forEach(card => {
-  card.addEventListener('click', (e) => {
-    card.classList.add('clicked');
-    setTimeout(() => card.classList.remove('clicked'), 600); // remove after animation
-  });
+    // Touch feedback for mobile devices
+document.querySelectorAll('.subject-card, .audio-card, .back-btn, .category-header').forEach(el => {
+    el.addEventListener('touchstart', () => {
+        if (!el.classList.contains('subject-card')) {
+            el.style.transform = 'scale(0.95)';
+        }
+    });
+    el.addEventListener('touchend', () => {
+        if (!el.classList.contains('subject-card')) {
+            el.style.transform = 'scale(1)';
+        }
+    });
 });
     </script>
 </body>
