@@ -221,7 +221,7 @@
         }
         
         .subjects-container.expanded {
-            max-height: 2000px;
+            max-height: 3000px;
             margin-top: 12px;
         }
         
@@ -231,61 +231,61 @@
             gap: 10px;
         }
         
-       .subject-card {
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    padding: 14px 12px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    color: white;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 85px;
-}
+        .subject-card {
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 14px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 85px;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Law Subjects - Gold/Yellow */
-#law-subjects .subject-card {
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.3));
-}
+        /* Law Subjects - Gold/Yellow */
+        #law-subjects .subject-card {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.3));
+        }
 
-#law-subjects .subject-card:active {
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.4), rgba(245, 158, 11, 0.4));
-}
+        #law-subjects .subject-card:active {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.4), rgba(245, 158, 11, 0.4));
+        }
 
-/* Commerce Subjects - Green */
-#commerce-subjects .subject-card {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(22, 163, 74, 0.3));
-}
+        /* Commerce Subjects - Green */
+        #commerce-subjects .subject-card {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(22, 163, 74, 0.3));
+        }
 
-#commerce-subjects .subject-card:active {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(22, 163, 74, 0.4));
-}
+        #commerce-subjects .subject-card:active {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(22, 163, 74, 0.4));
+        }
 
-/* Arts Subjects - Pink/Purple */
-#arts-subjects .subject-card {
-    background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.3));
-}
+        /* Arts Subjects - Pink/Purple */
+        #arts-subjects .subject-card {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.3));
+        }
 
-#arts-subjects .subject-card:active {
-    background: linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(219, 39, 119, 0.4));
-}
+        #arts-subjects .subject-card:active {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(219, 39, 119, 0.4));
+        }
 
-/* Other Subjects - Cyan/Blue */
-#others-subjects .subject-card {
-    background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(6, 182, 212, 0.3));
-}
+        /* Other Subjects - Cyan/Blue */
+        #others-subjects .subject-card {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(6, 182, 212, 0.3));
+        }
 
-#others-subjects .subject-card:active {
-    background: linear-gradient(135deg, rgba(34, 211, 238, 0.4), rgba(6, 182, 212, 0.4));
-}
-        
-
+        #others-subjects .subject-card:active {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.4), rgba(6, 182, 212, 0.4));
+        }
         
         .subject-icon {
             font-size: 28px;
@@ -296,6 +296,99 @@
             font-size: 12px;
             font-weight: 700;
             line-height: 1.3;
+        }
+
+        /* Units Container */
+        .units-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.4s ease;
+            margin-top: 0;
+            grid-column: 1 / -1;
+        }
+
+        .units-container.expanded {
+            max-height: 1000px;
+            margin-top: 10px;
+        }
+
+        .units-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .unit-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .unit-item:active {
+            transform: scale(0.98);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .unit-number {
+            font-size: 20px;
+            font-weight: 800;
+            min-width: 32px;
+        }
+
+        .unit-name {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .unit-arrow {
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
+        /* Click Feedback Animation */
+        .click-feedback {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 255, 0, 0.3);
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5em;
+            font-weight: 900;
+            color: #00ff00;
+            text-shadow: 
+                0 0 20px rgba(0, 255, 0, 0.8),
+                0 0 40px rgba(0, 255, 0, 0.6),
+                0 0 60px rgba(0, 255, 0, 0.4),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+        }
+
+        .subject-card.clicked .click-feedback,
+        .unit-item.clicked .click-feedback {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .unit-item .click-feedback {
+            border-radius: 12px;
+            font-size: 3em;
         }
         
         /* Content wrapper */
@@ -343,39 +436,6 @@
         .back-btn:active {
             transform: scale(0.95);
         }
-        /* ✅ Click Feedback Animation */
-.subject-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.click-feedback {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 255, 0, 0.3);
-  border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 5em;
-  font-weight: 900;
-  color: #00ff00;
-  text-shadow: 
-    0 0 20px rgba(0, 255, 0, 0.8),
-    0 0 40px rgba(0, 255, 0, 0.6),
-    0 0 60px rgba(0, 255, 0, 0.4),
-    2px 2px 4px rgba(0, 0, 0, 0.8);
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
-}
-
-.subject-card.clicked .click-feedback {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
     </style>
 </head>
 <body>
@@ -418,31 +478,50 @@
                 </div>
                 <div class="subjects-container" id="law-subjects">
                     <div class="subjects-grid">
-<a href="#" class="subject-card" onclick="openSubject(event, 'BNSS')">
-    <div class="subject-icon">📖</div>
-    <div class="subject-name">BNSS</div>
-    <div class="click-feedback">✓</div> <!-- ✅ Added -->
-</a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'BNS')">
+                        <div class="subject-card" onclick="toggleSubject(event, 'bnss')">
+                            <div class="subject-icon">📖</div>
+                            <div class="subject-name">BNSS</div>
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="bnss-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'bns')">
                             <div class="subject-icon">⚖️</div>
                             <div class="subject-name">BNS</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'BSA')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="bns-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'bsa')">
                             <div class="subject-icon">📜</div>
                             <div class="subject-name">BSA</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'Constitutional Law')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="bsa-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'constitutional-law')">
                             <div class="subject-icon">🏛️</div>
                             <div class="subject-name">Constitutional Law</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'CPC')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="constitutional-law-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'cpc')">
                             <div class="subject-icon">⚖️</div>
                             <div class="subject-name">CPC</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="cpc-units">
+                            <div class="units-list"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -453,23 +532,29 @@
                     <div class="category-icon">💼</div>
                     <div class="category-info">
                         <div class="category-name">Commerce Subjects</div>
-                        <div class="category-count">14 subjects available</div>
+                        <div class="category-count">2 subjects available</div>
                     </div>
                     <div class="category-arrow">›</div>
                 </div>
                 <div class="subjects-container" id="commerce-subjects">
                     <div class="subjects-grid">
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'Accounting-I')">
+                        <div class="subject-card" onclick="toggleSubject(event, 'accounting-i')">
                             <div class="subject-icon">📊</div>
                             <div class="subject-name">Accounting-I</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'Accounting-II')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="accounting-i-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'accounting-ii')">
                             <div class="subject-icon">📊</div>
                             <div class="subject-name">Accounting-II</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="accounting-ii-units">
+                            <div class="units-list"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -486,36 +571,59 @@
                 </div>
                 <div class="subjects-container" id="arts-subjects">
                     <div class="subjects-grid">
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'Political Science-I')">
+                        <div class="subject-card" onclick="toggleSubject(event, 'political-science-i')">
                             <div class="subject-icon">🗳️</div>
                             <div class="subject-name">Political Science-I</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'Political Science-II')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="political-science-i-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'political-science-ii')">
                             <div class="subject-icon">🗳️</div>
                             <div class="subject-name">Political Science-II</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'Economics-I')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="political-science-ii-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'economics-i')">
                             <div class="subject-icon">📈</div>
                             <div class="subject-name">Economics-I</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'Economics-II')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="economics-i-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'economics-ii')">
                             <div class="subject-icon">📊</div>
                             <div class="subject-name">Economics-II</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'History-I')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="economics-ii-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'history-i')">
                             <div class="subject-icon">🏛️</div>
                             <div class="subject-name">History-I</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'History-II')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="history-i-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'history-ii')">
                             <div class="subject-icon">📜</div>
                             <div class="subject-name">History-II</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="history-ii-units">
+                            <div class="units-list"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -532,16 +640,23 @@
                 </div>
                 <div class="subjects-container" id="others-subjects">
                     <div class="subjects-grid">
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'SM for Class-11-English')">
+                        <div class="subject-card" onclick="toggleSubject(event, 'sm-class-11')">
                             <div class="subject-icon">📖</div>
                             <div class="subject-name">SM for Class-11-English</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
-                        <a href="#" class="subject-card" onclick="openSubject(event, 'SM for Class-12-English')">
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="sm-class-11-units">
+                            <div class="units-list"></div>
+                        </div>
+
+                        <div class="subject-card" onclick="toggleSubject(event, 'sm-class-12')">
                             <div class="subject-icon">📚</div>
                             <div class="subject-name">SM for Class-12-English</div>
-                            <div class="click-feedback">✓</div> <!-- ✅ Added -->
-                        </a>
+                            <div class="click-feedback">✓</div>
+                        </div>
+                        <div class="units-container" id="sm-class-12-units">
+                            <div class="units-list"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -554,19 +669,131 @@
     </div>
 
     <script>
+        // SUBJECT UNITS/CHAPTERS CONFIGURATION
+        // To add more units/chapters, simply add them to the arrays below
+        const subjectUnits = {
+            'bnss': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'bns': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'bsa': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'constitutional-law': [
+                { name: 'Chapter 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Chapter 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Chapter 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Chapter 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'cpc': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'accounting-i': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'accounting-ii': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'political-science-i': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'political-science-ii': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'economics-i': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'economics-ii': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'history-i': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'history-ii': [
+                { name: 'Unit 1', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 2', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 3', url: 'https://sites.google.com/view/bnss-chapter-i/home' },
+                { name: 'Unit 4', url: 'https://sites.google.com/view/bnss-chapter-i/home' }
+            ],
+            'sm-class-11': [
+                { name: 'Unit 1', url: 'https://class-11-english-i.pages.dev/' },
+                { name: 'Unit 2', url: 'https://class-11-english-ii.pages.dev/' },
+                { name: 'Unit 3', url: 'https://class-11-english-iii.pages.dev/' },
+                { name: 'Unit 4', url: 'https://class-11-english-iv.pages.dev/' }
+            ],
+            'sm-class-12': [
+                { name: 'Unit 1', url: 'https://class-12-english-i.pages.dev/' },
+                { name: 'Unit 2', url: 'https://class-12-english-ii.pages.dev/' },
+                { name: 'Unit 3', url: 'https://class-12-english-iii.pages.dev/' },
+                { name: 'Unit 4', url: 'https://class-12-english-iv.pages.dev/' }
+            ]
+        };
+
+        // Initialize units on page load
+        function initializeUnits() {
+            for (const [subjectId, units] of Object.entries(subjectUnits)) {
+                const container = document.getElementById(`${subjectId}-units`);
+                if (container) {
+                    const unitsList = container.querySelector('.units-list');
+                    unitsList.innerHTML = units.map((unit, index) => `
+                        <a href="#" class="unit-item" onclick="openUnit(event, '${unit.url}')">
+                            <div class="unit-number">${index + 1}</div>
+                            <div class="unit-name">${unit.name}</div>
+                            <div class="unit-arrow">›</div>
+                            <div class="click-feedback">✓</div>
+                        </a>
+                    `).join('');
+                }
+            }
+        }
+
+        // Call initialization
+        initializeUnits();
+
         // Handle browser back button
         window.addEventListener('load', () => {
-            // Check if this window was opened by another window
             if (window.history.length <= 1 || window.opener) {
-                // Override back button behavior
                 window.history.pushState(null, '', window.location.href);
                 window.addEventListener('popstate', () => {
                     window.history.pushState(null, '', window.location.href);
-                    // Try to close the window, if it fails, user opened directly
                     if (window.opener) {
                         window.close();
                     } else {
-                        // Show a message if window can't be closed
                         if (confirm('Close this page?')) {
                             window.close();
                         } else {
@@ -672,51 +899,57 @@
                 if (c !== container && c.classList.contains('expanded')) {
                     c.classList.remove('expanded');
                     c.previousElementSibling.classList.remove('active');
+                    // Close all units in this category
+                    c.querySelectorAll('.units-container').forEach(u => u.classList.remove('expanded'));
                 }
             });
             
             // Toggle current category
+            const wasExpanded = container.classList.contains('expanded');
             container.classList.toggle('expanded');
             header.classList.toggle('active');
+            
+            // If closing, also close all units
+            if (wasExpanded) {
+                container.querySelectorAll('.units-container').forEach(u => u.classList.remove('expanded'));
+            }
         }
-        
-        // Subject links mapping
-        const subjectLinks = {
-            'BNSS': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'BNS': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'BSA': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'Constitutional Law': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'CPC': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'Accounting-I': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'Accounting-II': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'Political Science-I': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'Political Science-II': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'Economics-I': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'Economics-II': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'History-I': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'History-II': 'https://sites.google.com/view/bnss-chapter-i/home',
-            'SM for Class-11-English': 'https://class-11-english-i.pages.dev/',
-            'SM for Class-12-English': 'https://class-12-english-i.pages.dev/'
-        };
-        
-function openSubject(event, subjectName) {
-    event.preventDefault();
-    
-    // Add clicked class for animation
-    const card = event.currentTarget;
-    card.classList.add('clicked');
-    
-    // Wait for animation to complete before opening link
-    setTimeout(() => {
-        const url = subjectLinks[subjectName] || 'https://example.com/subject-not-found';
-        window.open(url, '_blank', 'noopener,noreferrer');
-        
-        // Remove clicked class after opening
-        setTimeout(() => {
-            card.classList.remove('clicked');
-        }, 100);
-    }, 400); // 400ms delay to show the checkmark
-}
+
+        // Toggle subject units
+        function toggleSubject(event, subjectId) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const card = event.currentTarget;
+            const unitsContainer = document.getElementById(`${subjectId}-units`);
+            
+            // Close all other units in the same category
+            const parentGrid = card.closest('.subjects-grid');
+            parentGrid.querySelectorAll('.units-container').forEach(container => {
+                if (container !== unitsContainer && container.classList.contains('expanded')) {
+                    container.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle current units
+            unitsContainer.classList.toggle('expanded');
+        }
+
+        // Open unit URL
+        function openUnit(event, url) {
+            event.preventDefault();
+            
+            const item = event.currentTarget;
+            item.classList.add('clicked');
+            
+            setTimeout(() => {
+                window.open(url, '_blank', 'noopener,noreferrer');
+                
+                setTimeout(() => {
+                    item.classList.remove('clicked');
+                }, 100);
+            }, 400);
+        }
         
         document.addEventListener('visibilitychange', () => {
             if (document.hidden && audioManager.isPlaying) {
@@ -724,7 +957,8 @@ function openSubject(event, subjectName) {
             }
         });
         
-        document.querySelectorAll('.subject-card, .audio-card, .back-btn').forEach(el => {
+        // Touch feedback for mobile devices
+        document.querySelectorAll('.audio-card, .back-btn, .category-header').forEach(el => {
             el.addEventListener('touchstart', () => {
                 el.style.transform = 'scale(0.95)';
             });
@@ -732,19 +966,6 @@ function openSubject(event, subjectName) {
                 el.style.transform = 'scale(1)';
             });
         });
-    // Touch feedback for mobile devices
-document.querySelectorAll('.subject-card, .audio-card, .back-btn, .category-header').forEach(el => {
-    el.addEventListener('touchstart', () => {
-        if (!el.classList.contains('subject-card')) {
-            el.style.transform = 'scale(0.95)';
-        }
-    });
-    el.addEventListener('touchend', () => {
-        if (!el.classList.contains('subject-card')) {
-            el.style.transform = 'scale(1)';
-        }
-    });
-});
     </script>
 </body>
 </html>
